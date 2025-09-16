@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id      String   @id @default(cuid())
+  name    String?
+  email   String?  @unique
+  resumes Resume[]
+}
+
+model Resume {
+  id                  String   @id @default(cuid())
+  userId              String
+  fileName            String
+  fileType            String
+  fileSize            Int
+  base64Content       String   @db.LongText
+  jobDescription      String   @db.LongText
+  originalResumeText  String   @db.LongText
+  optimizedResume     String   @db.LongText
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+

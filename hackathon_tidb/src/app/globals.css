@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme {
+  --color-cream: #F9F7F7;
+  --color-creamyblue: #DBE2EF;
+  --color-navyblue: #3F72AF;
+  --color-deepsea: #112D4E;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  
+  font-family: Arial, Helvetica, sans-serif;
+}
+/* PDF specific styles */
+.react-pdf__Page__textContent {
+  margin: 5px;
+  left: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+}
+
+.react-pdf__Page__annotations {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
